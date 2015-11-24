@@ -203,6 +203,10 @@
 	    }
 	 };
 	 
+	 var show_student_info = function(){
+		 alert("fuck");
+	 }
+	 
 	 var test_func = function()
 	 {
 		 var homework_maxpoint = parseInt(localStorage.getItem('homework_maxpoint'));     
@@ -233,8 +237,10 @@
                   $('#save_maxpoints').on('click', saveMaxpoints);
 	       	 	  $('#save_factors').on('click', saveFactors);
 	       	 	  $('#save_category').on('click', saveCategories);
-	       	 	$('#computeGrade').on('click', computeGrade);
+	       	 	  $('#computeGrade').on('click', computeGrade);
+	       	 	  //$('#show_student_info').on('click', show_student_info);
 	       	 	  $('#test').on('click', test_func);
+	       	 	
 
                   var gradeCutOffSetting = localStorage.getItem('gradeCutOff');
                   

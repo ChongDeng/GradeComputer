@@ -8,7 +8,56 @@
                 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
                 <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
                 <script src="js/app.js"></script>
-                </head>
+                
+                <script>
+                	function get_course_description(){
+                    	
+                		var action = "action=getText";
+                		var url = "course_description.php";
+
+                		var xmlHttp = false;
+            			try {
+            				xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+            			}catch(e){
+            			  	try{
+            			  		xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+            				}catch(E){
+            					xmlHttp = false;
+            				}
+            			}
+            			if(!xmlHttp && typeof XMLHttpRequest != 'undefined') {
+            				xmlHttp = new XMLHttpRequest();
+            			}
+            			//使用GET方法提交数据
+            			xmlHttp.open("GET",url+"?"+action,true);
+            			//发送HTTP头信息
+            			xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+            			//发送请求,此处与GET方法不同
+            			xmlHttp.send(null);
+            			//指定回调函数
+            			xmlHttp.onreadystatechange = function(){
+            				if(xmlHttp.readyState == 4){
+            					var course_info = xmlHttp.responseText;
+            					$("#course_info").text(course_info);            					
+            					$("#course_div").show();
+            					
+            					//alert("str: " + text);
+            					/*							
+            					if(text == "success"){
+            						alert("success");
+            					}
+            					else{
+            						alert(text);
+            					}
+            					*/
+            									
+            				}
+            			}
+            			
+                    	alert("hello");
+                    }
+                </script>
+    </head>
     
     
     <body>
@@ -16,7 +65,9 @@
         <div data-role="page" class="" id="mainPage">
             <div data-role="header" class="">
                 <h1>Grade Calculator by team mossberg</h1>
-                <input name="test" id="test"  type="button" value="test">
+                <input name="test" id="test"  type="button" value="test">               
+                <a href="student_info.php" name="show_student_info" id="show_student_info" class="ui-btn-left" data-role="button">display student info</a>
+                <input onclick="get_course_description()" name="show_course_info" id="show_course_info"  type="button" value="display course info"> 
                 <a href="#setting_page" id='settingsButton' class="ui-btn-right" data-role="button" data-icon="gear">Settings</a>
             </div>
             <div data-role="content" class="">
@@ -58,6 +109,12 @@
                     <span id="finalgrade">TBD</span>
                     </p>
                 </form>
+                
+                <div id="course_div" style="display:none;">
+                	<h3>Course CMPE 235 Description </h3>
+                	<div id="course_info">
+                </div>
+		  
             </div>
         </div>
         

@@ -7,15 +7,33 @@
                 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
                 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
                 <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
-                <script src="js/app.js"></script>
-                </head>
-    
-    
+                <script>
+            
+		        	$(document).ready(function(){ 
+		        		 $('#test').on('click', test_func);
+		        		 alert("test");
+		            });
+	            
+		        	var test_func = function()
+		        	 {
+		        		 var homework_maxpoint = parseInt(localStorage.getItem('homework_maxpoint'));     
+		        		 var lab_maxpoint = parseInt(localStorage.getItem('lab_maxpoint'));
+		        		 var project_maxpoint = parseInt(localStorage.getItem('project_maxpoint'));
+		        		 var presentation_maxpoint = parseInt(localStorage.getItem('presentation_maxpoint'));
+		        		 var midterm_maxpoint = parseInt(localStorage.getItem('midterm_maxpoint'));	 
+		        	      
+		        	     alert("#" + homework_maxpoint + "#" + lab_maxpoint + "#" + project_maxpoint + "#" + midterm_maxpoint + "#" + presentation_maxpoint + "#");
+		        	   
+		        	 };
+			       
+	            </script> 
+                </head>   
     <body>
     
         <div data-role="page" class="" id="mainPage">
             <div data-role="header" class="">
                 <h1>Grade Calculator by team mossberg</h1>
+                <input name="test" id="test"  type="button" value="test">     
                 <a href="grade_setting.php" id='settingsButton' class="ui-btn-right" data-role="button" data-icon="gear">Settings</a>
             </div>
             <div data-role="content" class="">
@@ -46,7 +64,7 @@
                         <p style="text-align: center;">
                         <a href="#" id='saveSettings' data-role="button" data-inline="true" data-icon="check">Save</a>
                         </p>
-                        </form>
+                </form>
             </div>
         </div>
         

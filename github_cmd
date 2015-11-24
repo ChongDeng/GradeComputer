@@ -1,0 +1,9 @@
+cd H:/cmpe235/GradeComputer
+git rm -fr *
+
+git add *
+git commit -m
+git push origin master
+
+
+H:\cmpe235\GradeComputer

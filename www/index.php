@@ -1,15 +1,27 @@
+<?php
+	if(isset($_GET["action"]) and $_GET["action"]=="getText"){
+	  	$res = update_student_info_DB( ); 
+	  	if($res == "success") 		
+	 		print 'success';
+	 	else 
+	 	    print $res; 	    
+	  	exit();  	
+  	}
+	 
+	$student_info = get_student_details(1); 
+?>
 <!DOCTYPE html>
 <html>
     <head>
         <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1">
             <meta charset="utf-8">
                 <title>Grade Calculator</title>
-                <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
-                <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-                <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+                <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
                 <script src="js/app.js"></script>
                 
-                <script>
+                <script type="text/javascript">
                 	function get_course_description(){
                     	
                 		var action = "action=getText";
@@ -54,7 +66,7 @@
             				}
             			}
             			
-                    	alert("hello");
+                    	//alert("hello");
                     }
                 </script>
     </head>
@@ -62,11 +74,58 @@
     
     <body>
     
+    	 <div data-role="page" class="" id="student_page">
+		<div data-role="header" class="">
+			<h1>student info</h1>
+			<input name="test" id="test"  type="button" value="test">              
+            <a href="#setting_page" id='settingsButton' class="ui-btn-right" data-role="button" data-icon="gear">Settings</a>
+		</div>
+		<div data-role="content" class="">
+            <form name="form1">
+	             
+	              <p>
+	                <label>First Name
+	                <input type="text" name="firstname" id="firstname" value="<?php echo $student_info[0]['first_name'];?>">
+	                </label>
+	              </p>            
+	             
+	              
+	              <p>
+	                <label>Last Name
+	                <input type="text" name="lastname" id="lastname" value="<?php echo $student_info[0]['last_name'];?>">
+	                </label>
+	              </p>
+	              
+	              <p>
+	                <label>phone number
+	                <input type="text" name="phone" id="phone" value="<?php echo $student_info[0]['phone'];?>">
+	                </label>
+	              </p>
+	              
+	              <p>
+	                <label>SJSU ID
+	                <input type="text" name="sjsu_id" id="sjsu_id" value="<?php echo $student_info[0]['sjsu_id'];?>">
+	                </label>
+	              </p>              
+	            
+	              <input id="save_student_info"  name="save_student_info" type="button" value="Save">  
+	            </form>
+	            <br>
+			    <div>
+			    	<h3>CMPE235 Course Description</h3>
+			    	<p id="course_description">hello world</p>
+			    </div>
+			</div>
+			<div data-role="footer"><h1>Team Mossberg</h1>
+		 	</div>
+		</div>
+        
+    
         <div data-role="page" class="" id="mainPage">
             <div data-role="header" class="">
                 <h1>Grade Calculator by team mossberg</h1>
                 <input name="test" id="test"  type="button" value="test">               
-                <a href="student_info.php" name="show_student_info" id="show_student_info" class="ui-btn-left" data-role="button">display student info</a>
+                <a href="#student_info" name="show_student_info" id="show_student_info" class="ui-btn-left" data-role="button">display student info</a>
                 <input onclick="get_course_description()" name="show_course_info" id="show_course_info"  type="button" value="display course info"> 
                 <a href="#setting_page" id='settingsButton' class="ui-btn-right" data-role="button" data-icon="gear">Settings</a>
             </div>
@@ -110,24 +169,21 @@
                     </p>
                 </form>
                 
-                <div id="course_div" style="display:none;">
-                	<h3>Course CMPE 235 Description </h3>
-                	<div id="course_info">
-                </div>
+               
 		  
             </div>
         </div>
         
         <div data-role="page" class="" id="setting_page">
             <div data-role="header" class="">
-                <a href="#" id='cancelSettings' class="ui-btn ui-icon-delete ui-btn-icon-left" data-rel="back">Cancel</a>
+               
                 <h1>Grade - Settings</h1>
             </div>
             <div data-role="content" class="">
-                <form>
-                    <input type="number" name="gradeCutOff" id="gradeCutOff" value="" placeholder="Grade Cutoff at">
+                <form>                   
                         <p style="text-align: center;">
-                        <a href="#mainPage" id='saveSettings' data-role="button" data-inline="true" data-icon="check">Save</a>
+                         <a href="#" id='resetSettings' data-role="button" data-inline="true" class="ui-btn-icon-left" data-icon="delete" data-rel="back">Reset</a>
+                        <a href="#student_page" id='settings_return' data-role="button" data-inline="true" class="ui-btn-icon-left" data-icon="back">Return</a>
                        
                         </p>
                 </form>
@@ -216,6 +272,7 @@
     						<input name="f_right" id="f_right" type="range" min="0" max="100" value="59" data-highlight="true">					    
 					</fieldset>
 					<input name="save_category" id="save_category"  type="button" value="Save">
+					
 				</form>
 				
                 
@@ -223,24 +280,66 @@
         </div>
         
         
-        
-        
-        
-        <div data-role="page" class="" id="settingsPage" data-add-back-btn="true" >
-            <div data-role="header" class="">
-                <a href="#" id='cancelSettings' class="ui-btn ui-icon-delete ui-btn-icon-left" data-rel="back">Cancel</a>
-                <h1>Grade - Settings</h1>
-            </div>
-            <div data-role="content" class="">
-                <form>
-                    <input type="number" name="gradeCutOff" id="gradeCutOff" value="" placeholder="Grade Cutoff at">
-                        <p style="text-align: center;">
-                        <a href="#" id='saveSettings' data-role="button" data-inline="true" data-icon="check">Save</a>
-                        </p>
-                        </form>
-            </div>
-        </div>
+       
+       
         
        
     </body>
 </html>
+<?php
+	function get_student_details($student_id){
+	   include_once('db_fns.php'); 
+	   // query database for the books in a category
+	   if ((!$student_id) || ($student_id == '')) {
+	     return false;
+	   }
+	   
+	   $conn = db_connect();
+	  // $query = "select * from food where food_id = '".$food_id."'";
+	   
+	   $query = "select *
+				 from student
+				 where student_id = '".$student_id."'";
+	   	   
+	   $result = @$conn->query($query);
+	   if (!$result) {
+	     return false;
+	   }
+	   
+	   $num_info = @$result->num_rows;
+	   if ($num_info == 0) {
+	      return false;
+	   }      
+	   $result = db_result_to_array($result);
+	   return $result;
+	}
+	
+	function update_student_info_DB(){
+				
+		include_once('db_fns.php'); 			
+	
+		$firstname = $_POST['firstname'];
+		$lastname = $_POST['lastname'];
+		$phone = $_POST['phone'];
+		$sjsu_id = $_POST['sjsu_id'];
+		$student_id = $_POST['student_id'];
+		
+		$conn = db_connect();
+		$quey = null; $result = null;
+	
+
+		$query = "update student set 
+				 first_name = '".$firstname."', 
+				 last_name = '".$lastname."', 
+				 phone ='".$phone."',
+				 sjsu_id ='".$sjsu_id."'				 
+				 where student_id = ".$student_id;
+		//return $query;
+		//write_log($query);
+		$result = @$conn->query($query);
+		if(!$result) return  "Error: Can't update student info";
+		
+		return "success";
+  	}
+  	
+?>

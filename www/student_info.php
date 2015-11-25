@@ -15,11 +15,15 @@
 <html>
 <head>
     <title>Forms with jQuery Mobile</title>
-    <link rel="stylesheet" href="http://www.77elv.com/jquery.mobile-1.4.5/jquery.mobile-1.4.5.css"/>
-    <script src="http://www.77elv.com/jquery.mobile-1.4.5/demos/js/jquery.js"></script>
-    <script src="http://www.77elv.com/jquery.mobile-1.4.5/demos/js/jquery.mobile-1.4.5.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+    <script src="js/student_info.js"></script>
     
-    <script type="text/javascript"> 
+    <script type="text/javascript">
+
+    	//$('#save_button').on('click', update_student_info);
+     
 		function update_student_info(){
 			
 			var firstname = document.getElementById("firstname").value;
@@ -74,11 +78,12 @@
  
 </head>
 <body>
-	<section data-role="page" id="first">
-		<header data-role="header">
+	
+	<div data-role="page" class="" id="student_info">
+		<div data-role="header" class="">
 			<h1>student info</h1>
-		</header>
-		<article data-role="content">
+		</div>
+		<div data-role="content" class="">
             <form name="form1">
              
               <p>
@@ -106,11 +111,12 @@
                 </label>
               </p>              
             
-              <input onclick="update_student_info()"  type="button" value="Save">  
+              <input onclick="update_student_info2()" id="save_student_info"  name="save_student_info" type="button" value="Save">  
             </form>
-		</article>
-	<footer data-role="footer"><h1>Team Mossberg</h1></footer>
-	</section>
+		</div>
+		<div data-role="footer"><h1>Team Mossberg</h1>
+	 	</div>
+	</div>
 </body>
 </html>
 
@@ -158,7 +164,7 @@
 
 		$query = "update student set 
 				 first_name = '".$firstname."', 
-				 last_name = '".last_name."', 
+				 last_name = '".$lastname."', 
 				 phone ='".$phone."',
 				 sjsu_id ='".$sjsu_id."'				 
 				 where student_id = ".$student_id;

@@ -60,52 +60,18 @@
 		 alert("percentage: " + percentage);
 		 //alert("grade_denominator: " + grade_denominator + " grade_numerator: " + grade_numerator); 
 	 }
-	 
-	 //alert("val: " + homework_factor + " " + lab_factor + " " + project_factor + " " + presentation_factor + " " + midterm_factor + " " + final_factor);
-     
-	 
-	 
-	 
-     //alert("val: " + homework_grades + " " + lab_grades + " " + project_grades + " " + presentation_grades + " " + midterm_grades + " " + final_grades);
-    
-   
-    
-    /*
-     var currentPoints = Number( $('#points').val() );
-    var currentGrade = "NA";
- 
-    if (currentPoints >= gApoint)
-    {
-        currentGrade = "A";
-    }
-    else
-    {
-        currentGrade = "F";
-    }
-    $('#finalgrade').text(currentGrade);
-   */
  };
  
- var saveSettings = function()
- {
-    try {
-        var aPoint = parseFloat( $('#gradeCutOff').val() );
- 
-        localStorage.setItem('gradeCutOff', aPoint);
-        gApoint = aPoint;
-        window.history.back();
-    } catch (ex)
-    {
-        alert('Points must be a decimal value');
-    }
+ var settings_return = function(){
+	// window.history.back();
  };
 
- var cancelSettings = function()
+ var resetSettings = function()
  {
     localStorage.clear();
  };
 
- var saveMaxpoints = function(){   	
+var saveMaxpoints = function(){   	
 	    try {
 	        var homework_maxpoint = parseInt($('#homework_maxpoint').val());
 	        localStorage.setItem('homework_maxpoint', homework_maxpoint);
@@ -126,17 +92,17 @@
 	        localStorage.setItem('final_maxpoint', final_maxpoint);   
 	        
 	        
-	        alert("#" + homework_maxpoint + "#" + lab_maxpoint + "#" + project_maxpoint + "#" + midterm_maxpoint + "#" + presentation_maxpoint + "#" + final_maxpoint + "#");
-	       
+	        //alert("#" + homework_maxpoint + "#" + lab_maxpoint + "#" + project_maxpoint + "#" + midterm_maxpoint + "#" + presentation_maxpoint + "#" + final_maxpoint + "#");
+	        alert("success!");
 	      
 	    } catch (ex)
 	    {
 	        alert('Points must be a decimal value');
 	    }
-	 };
+};
 	 
-	 var saveFactors = function()
-	 {
+var saveFactors = function()
+{
 	    try {
 	        var homework_factor = parseInt($('#homework_factor').val());                
 	        var lab_factor = parseInt($('#lab_factor').val());
@@ -160,14 +126,14 @@
 	            localStorage.setItem('presentation_factor', presentation_factor);       
 	            localStorage.setItem('midterm_factor', midterm_factor);              
 	            localStorage.setItem('final_factor', final_factor);
-	            
-	            alert("#" + homework_factor + "#" + lab_factor + "#" + project_factor + "#" + presentation_factor + "#" + midterm_factor + "#" + final_factor);
+	            alert("success!");
+	            //alert("#" + homework_factor + "#" + lab_factor + "#" + project_factor + "#" + presentation_factor + "#" + midterm_factor + "#" + final_factor);
 	        }         
 	    } catch (ex)
 	    {
 	        alert('Points must be a decimal value');
 	    }
-	 };
+};
 	 
 	 var saveCategories = function()
 	 {
@@ -181,7 +147,7 @@
 	        var d_right = parseInt($('#d_right').val());
 	        var f_right = parseInt($('#f_right').val());
 	        
-	        alert("#" + a_left + "  " + b_left + "#" + b_right + "  " + c_left + "#" + c_right + "  " + d_left + "#" + d_right + "  " + f_right + "#");
+	        //alert("#" + a_left + "  " + b_left + "#" + b_right + "  " + c_left + "#" + c_right + "  " + d_left + "#" + d_right + "  " + f_right + "#");
 	        
 	        if(a_left == 0 || b_left == 0 || b_right == 0 || c_left == 0 || c_right == 0 || d_left == 0 || d_right == 0 || f_right == 0)
 	        	alert("Wrong inputs, every input should not be 0");
@@ -196,15 +162,61 @@
 	            localStorage.setItem('d_left', d_left);
 	            localStorage.setItem('d_right', d_right);             
 	            localStorage.setItem('f_right', f_right);
-	        }       
+	        } 
+	        alert("success!");
 	    } catch (ex)
 	    {
 	        alert('Points must be a decimal value');
 	    }
 	 };
 	 
-	 var show_student_info = function(){
-		 alert("fuck");
+	 var saveStudentInfo = function(){
+		 var firstname = document.getElementById("firstname").value;
+			var lastname = document.getElementById("lastname").value;			
+			var phone =  document.getElementById("phone").value;
+			var sjsu_id =  document.getElementById("sjsu_id").value;
+		    var student_id = 1;  
+			var post = "firstname=" + firstname + "&lastname=" + lastname + 
+	        "&phone=" + phone + "&sjsu_id="+sjsu_id + "&student_id=" + student_id;
+			//alert("post: " + post);
+	        
+			var action = "action=getText";
+			var url = "student_info.php";
+	
+			var xmlHttp = false;
+			try {
+				xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+			}catch(e){
+			  	try{
+			  		xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+				}catch(E){
+					xmlHttp = false;
+				}
+			}
+			if(!xmlHttp && typeof XMLHttpRequest != 'undefined') {
+				xmlHttp = new XMLHttpRequest();
+			}
+			//使用GET方法提交数据
+			xmlHttp.open("POST",url+"?"+action,true);
+			//发送HTTP头信息
+			xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+			//发送请求,此处与GET方法不同
+			xmlHttp.send(post);
+			//指定回调函数
+			xmlHttp.onreadystatechange = function(){
+				if(xmlHttp.readyState == 4){
+					var text = xmlHttp.responseText;
+					//alert("str: " + text);
+												
+					if(text == "success"){
+						alert("success");
+					}
+					else{
+						alert(text);
+					}
+									
+				}
+			}
 	 }
 	 
 	 var test_func = function()
@@ -228,16 +240,20 @@
 	 
 	 
  // Setup the event handlers
- $( document ).on( "ready", function()
-                  {
+ $( document ).on( "ready", function(){
                   
-                  //$('#saveSettings').on('click', saveSettings);
-                  $('#cancelSettings').on('click', cancelSettings);
+                  $('#settings_return').on('click', settings_return);
+                  $('#resetSettings').on('click', resetSettings);
                   
                   $('#save_maxpoints').on('click', saveMaxpoints);
 	       	 	  $('#save_factors').on('click', saveFactors);
 	       	 	  $('#save_category').on('click', saveCategories);
 	       	 	  $('#computeGrade').on('click', computeGrade);
+	       	 	  $('#save_student_info').on('click', saveStudentInfo);
+	       	 	  
+	       	 	  //$('#course_description').load('http://www.orientino.info/project/course_description.txt');
+	       	 	  $('#course_description').load('course_description.txt');
+	       	 	
 	       	 	  //$('#show_student_info').on('click', show_student_info);
 	       	 	  $('#test').on('click', test_func);
 	       	 	
@@ -251,7 +267,7 @@
                   
                   $('#gradeCutOff').val(gApoint);
                   
-                  });
+});
 
  // Load plugin
  $( document ).on( "deviceready", function(){

@@ -68,6 +68,9 @@
             			
                     	//alert("hello");
                     }
+
+                	
+    					
                 </script>
     </head>
     
@@ -75,104 +78,52 @@
     <body>
     
     	 <div data-role="page" class="" id="student_page">
-		<div data-role="header" class="">
-			<h1>student info</h1>
-			<input name="test" id="test"  type="button" value="test">              
-            <a href="#setting_page" id='settingsButton' class="ui-btn-right" data-role="button" data-icon="gear">Settings</a>
-		</div>
-		<div data-role="content" class="">
-            <form name="form1">
-	             
-	              <p>
-	                <label>First Name
-	                <input type="text" name="firstname" id="firstname" value="<?php echo $student_info[0]['first_name'];?>">
-	                </label>
-	              </p>            
-	             
-	              
-	              <p>
-	                <label>Last Name
-	                <input type="text" name="lastname" id="lastname" value="<?php echo $student_info[0]['last_name'];?>">
-	                </label>
-	              </p>
-	              
-	              <p>
-	                <label>phone number
-	                <input type="text" name="phone" id="phone" value="<?php echo $student_info[0]['phone'];?>">
-	                </label>
-	              </p>
-	              
-	              <p>
-	                <label>SJSU ID
-	                <input type="text" name="sjsu_id" id="sjsu_id" value="<?php echo $student_info[0]['sjsu_id'];?>">
-	                </label>
-	              </p>              
-	            
-	              <input id="save_student_info"  name="save_student_info" type="button" value="Save">  
-	            </form>
-	            <br>
-			    <div>
-			    	<h3>CMPE235 Course Description</h3>
-			    	<p id="course_description">hello world</p>
-			    </div>
+			<div data-role="header" class="">
+				<h1>student info</h1>
+				<input name="test" id="test"  type="button" value="test">
+				<a href="#grades_Page" name="calculate_grades" id="calculate_grades" class="ui-btn-left" data-role="button">Calculate your grade</a>              
+	            <a href="#setting_page" id='settingsButton' class="ui-btn-right" data-role="button" data-icon="gear">Settings</a>
 			</div>
-			<div data-role="footer"><h1>Team Mossberg</h1>
-		 	</div>
-		</div>
+			<div data-role="content" class="">
+	            <form name="form1">
+		             
+		              <p>
+		                <label>First Name
+		                <input type="text" name="firstname" id="firstname" value="<?php echo $student_info[0]['first_name'];?>">
+		                </label>
+		              </p>            
+		             
+		              
+		              <p>
+		                <label>Last Name
+		                <input type="text" name="lastname" id="lastname" value="<?php echo $student_info[0]['last_name'];?>">
+		                </label>
+		              </p>
+		              
+		              <p>
+		                <label>phone number
+		                <input type="text" name="phone" id="phone" value="<?php echo $student_info[0]['phone'];?>">
+		                </label>
+		              </p>
+		              
+		              <p>
+		                <label>SJSU ID
+		                <input type="text" name="sjsu_id" id="sjsu_id" value="<?php echo $student_info[0]['sjsu_id'];?>">
+		                </label>
+		              </p>              
+		            
+		              <input id="save_student_info"  name="save_student_info" type="button" value="Save">  
+		            </form>
+		            <br>
+				    <div>
+				    	<h3>CMPE235 Course Description</h3>
+				    	<p id="course_description">No Contents</p>
+				    </div>
+				</div>
+				<div data-role="footer"><h1>Team Mossberg</h1>
+			 	</div>
+			</div>   
         
-    
-        <div data-role="page" class="" id="mainPage">
-            <div data-role="header" class="">
-                <h1>Grade Calculator by team mossberg</h1>
-                <input name="test" id="test"  type="button" value="test">               
-                <a href="#student_info" name="show_student_info" id="show_student_info" class="ui-btn-left" data-role="button">display student info</a>
-                <input onclick="get_course_description()" name="show_course_info" id="show_course_info"  type="button" value="display course info"> 
-                <a href="#setting_page" id='settingsButton' class="ui-btn-right" data-role="button" data-icon="gear">Settings</a>
-            </div>
-            <div data-role="content" class="">
-            	<h3>Please enter the points</h3>
-                <form>
-                    <div data-role="fieldcontain">
-                    
-                        <label for="homework_grades">Homeworks</label>
-                        <input type="number" name="homework_grades" id="homework_grades" data-clear-btn="true" maxlength="3" value="" placeholder="Enter points here">
-                        <br><br>
-                        
-                        <label for="lab_grades">Labs</label>
-                        <input type="number" name="lab_grades" id="lab_grades" data-clear-btn="true" maxlength="3" value="" placeholder="Enter points here">
-                        <br><br>
-                        
-                        <label for="project_grades">Project</label>
-                        <input type="number" name="project_grades" id="project_grades" data-clear-btn="true" maxlength="3" value="" placeholder="Enter points here">
-                        <br><br>
-                        
-                        <label for="presentation_grades">Presentation</label>
-                        <input type="number" name="presentation_grades" id="presentation_grades" data-clear-btn="true" maxlength="3" value="" placeholder="Enter points here">
-                        <br><br>
-                        
-                        <label for="midterm_grades">Midterm</label>
-                        <input type="number" name="midterm_grades" id="midterm_grades" data-clear-btn="true" maxlength="3" value="" placeholder="Enter points here">
-                        <br><br>
-                        
-                        <label for="final_grades">Final</label>
-                        <input type="number" name="final_grades" id="final_grades" data-clear-btn="true" maxlength="3" value="" placeholder="Enter points here">
-                        <br><br>
-                        
-                        
-                     </div>
-                    <p style="text-align: center;">
-                    <a href="#" id="computeGrade" data-role="button" data-icon="check">Compute Grade</a>
-                    </p>
-                    <p class="final grade">
-                    <label>Final Grade</label>
-                    <span id="finalgrade">TBD</span>
-                    </p>
-                </form>
-                
-               
-		  
-            </div>
-        </div>
         
         <div data-role="page" class="" id="setting_page">
             <div data-role="header" class="">
@@ -183,7 +134,7 @@
                 <form>                   
                         <p style="text-align: center;">
                          <a href="#" id='resetSettings' data-role="button" data-inline="true" class="ui-btn-icon-left" data-icon="delete" data-rel="back">Reset</a>
-                        <a href="#student_page" id='settings_return' data-role="button" data-inline="true" class="ui-btn-icon-left" data-icon="back">Return</a>
+                         <a href="#student_page" id='settings_return' data-role="button" data-inline="true" class="ui-btn-icon-left" data-icon="back">Return</a>
                        
                         </p>
                 </form>
@@ -279,8 +230,103 @@
             </div>
         </div>
         
+        <div data-role="page" class="" id="grades_Page">
+            <div data-role="header" class="">
+                <h1>Calculate Grades</h1>
+                <a href="#student_page" id='grades_return' data-role="button" data-inline="true" class="ui-btn-icon-left" data-icon="back">Return</a>                
+            </div>
+            <div data-role="content" class="">
+            	<h3>Please enter the points</h3>
+                <form>
+                    <div data-role="fieldcontain">
+                    
+                        <label for="homework_grades">Homeworks</label>
+                        <input type="number" name="homework_grades" id="homework_grades" data-clear-btn="true" maxlength="3" value="" placeholder="Enter points here">
+                        <br><br>
+                        
+                        <label for="lab_grades">Labs</label>
+                        <input type="number" name="lab_grades" id="lab_grades" data-clear-btn="true" maxlength="3" value="" placeholder="Enter points here">
+                        <br><br>
+                        
+                        <label for="project_grades">Project</label>
+                        <input type="number" name="project_grades" id="project_grades" data-clear-btn="true" maxlength="3" value="" placeholder="Enter points here">
+                        <br><br>
+                        
+                        <label for="presentation_grades">Presentation</label>
+                        <input type="number" name="presentation_grades" id="presentation_grades" data-clear-btn="true" maxlength="3" value="" placeholder="Enter points here">
+                        <br><br>
+                        
+                        <label for="midterm_grades">Midterm</label>
+                        <input type="number" name="midterm_grades" id="midterm_grades" data-clear-btn="true" maxlength="3" value="" placeholder="Enter points here">
+                        <br><br>
+                        
+                        <label for="final_grades">Final</label>
+                        <input type="number" name="final_grades" id="final_grades" data-clear-btn="true" maxlength="3" value="" placeholder="Enter points here">
+                        <br><br>
+                        
+                        
+                     </div>
+                    <p style="text-align: center;">
+                    <a href="#" id="computeGrade" data-role="button" data-icon="check">Compute Grade</a>
+                    </p>
+                    <p class="final grade">
+                    <label>Final Grade</label>
+                    <span id="finalgrade">TBD</span>
+                    </p>
+                </form>	  
+            </div>
+        </div>
         
-       
+        
+        <div data-role="page" class="" id="mainPage">
+            <div data-role="header" class="">
+                <h1>Grade Calculator by team mossberg</h1>
+                <input name="test" id="test"  type="button" value="test">               
+                <a href="#student_info" name="show_student_info" id="show_student_info" class="ui-btn-left" data-role="button">display student info</a>
+                <input onclick="get_course_description()" name="show_course_info" id="show_course_info"  type="button" value="display course info"> 
+                <a href="#setting_page" id='settingsButton' class="ui-btn-right" data-role="button" data-icon="gear">Settings</a>
+            </div>
+            <div data-role="content" class="">
+            	<h3>Please enter the points</h3>
+                <form>
+                    <div data-role="fieldcontain">
+                    
+                        <label for="homework_grades">Homeworks</label>
+                        <input type="number" name="homework_grades" id="homework_grades" data-clear-btn="true" maxlength="3" value="" placeholder="Enter points here">
+                        <br><br>
+                        
+                        <label for="lab_grades">Labs</label>
+                        <input type="number" name="lab_grades" id="lab_grades" data-clear-btn="true" maxlength="3" value="" placeholder="Enter points here">
+                        <br><br>
+                        
+                        <label for="project_grades">Project</label>
+                        <input type="number" name="project_grades" id="project_grades" data-clear-btn="true" maxlength="3" value="" placeholder="Enter points here">
+                        <br><br>
+                        
+                        <label for="presentation_grades">Presentation</label>
+                        <input type="number" name="presentation_grades" id="presentation_grades" data-clear-btn="true" maxlength="3" value="" placeholder="Enter points here">
+                        <br><br>
+                        
+                        <label for="midterm_grades">Midterm</label>
+                        <input type="number" name="midterm_grades" id="midterm_grades" data-clear-btn="true" maxlength="3" value="" placeholder="Enter points here">
+                        <br><br>
+                        
+                        <label for="final_grades">Final</label>
+                        <input type="number" name="final_grades" id="final_grades" data-clear-btn="true" maxlength="3" value="" placeholder="Enter points here">
+                        <br><br>
+                        
+                        
+                     </div>
+                    <p style="text-align: center;">
+                    <a href="#" id="computeGrade" data-role="button" data-icon="check">Compute Grade</a>
+                    </p>
+                    <p class="final grade">
+                    <label>Final Grade</label>
+                    <span id="finalgrade">TBD</span>
+                    </p>
+                </form>	  
+            </div>
+        </div>
        
         
        

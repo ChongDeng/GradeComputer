@@ -252,12 +252,28 @@ var saveFactors = function()
 	       	 	  $('#save_student_info').on('click', saveStudentInfo);
 	       	 	  
 	       	 	  //$('#course_description').load('http://www.orientino.info/project/course_description.txt');
-	       	 	  $('#course_description').load('course_description.txt');
+	       	 	  //$('#course_description').load('course_description.txt');
 	       	 	
 	       	 	  //$('#show_student_info').on('click', show_student_info);
 	       	 	  $('#test').on('click', test_func);
 	       	 	
-
+	       	 	  $.ajax(
+					    {        
+					        type:'get',
+					        url : 'http://www.orientino.info/project/course_description.php',
+					      
+					        dataType : 'jsonp',
+					        jsonp:"jsoncallback",
+					        success  : function(data) {
+					    		$('#course_description').text(data.course_description);
+					            //alert("course_name£º"+ data.course_name +" descripion£º"+ data.course_description);
+					        },
+					        error : function() {
+					            alert('fail to get the course description from outer cross-domain server ');
+					        }
+					    }
+				   );
+	       	 	  
                   var gradeCutOffSetting = localStorage.getItem('gradeCutOff');
                   
                   if (gradeCutOffSetting)

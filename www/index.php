@@ -82,7 +82,7 @@
 				<h1>student info</h1>
 				<input name="test" id="test"  type="button" value="test">
 				<a href="#grades_Page" name="calculate_grades" id="calculate_grades" class="ui-btn-left" data-role="button">Calculate your grade</a>              
-	            <a href="#setting_page" id='settingsButton' class="ui-btn-right" data-role="button" data-icon="gear">Settings</a>
+	            <a href="#setting_page" id='settingsButton' class="ui-btn-right" data-role="button" data-icon="gear">Grades Settings</a>
 			</div>
 			<div data-role="content" class="">
 	            <form name="form1">
@@ -141,8 +141,7 @@
                 
 				
 				<form>
-					<fieldset>
-						<legend>set maximum points</legend>
+							<b>Set Maximum Points:</b><br><br>
 					    	<label for="homework_maxpoint">Homeworks:</label>
     						<input name="homework_maxpoint" id="homework_maxpoint" type="range" min="0" max="500" value="50" data-highlight="true">
     						
@@ -161,14 +160,13 @@
     						<label for="final_maxpoint">Final:</label>
     						<input name="final_maxpoint" id="final_maxpoint" type="range" min="0" max="500" value="50" data-highlight="true">    												
     						    												
-					</fieldset>
+						
 					<input name="save_maxpoints" id="save_maxpoints"  type="button" value="Save">     
 				</form>
 				<br><br>
 				
 				<form>
-					<fieldset>
-						<legend>set scaling factors</legend>
+							<b>Set Scaling Factors:</b><br><br>
 					    	<label for="homework_factor">Homeworks(percentage):</label>
     						<input name="homework_factor" id="homework_factor" type="range" min="0" max="100" value="10" data-highlight="true">
     						
@@ -186,14 +184,13 @@
     						
     						<label for="final_factor">Final(percentage):</label>
     						<input name="final_factor" id="final_factor" type="range" min="0" max="100" value="10" data-highlight="true">    						    						
-					</fieldset>
-					<input name="save_factors" id="save_factors"  type="button" value="Save">  
+					
+							<input name="save_factors" id="save_factors"  type="button" value="Save">  
 				</form>
                 <br><br>
                 
-                <form>
-					<fieldset>
-						<legend>Grade category</legend>
+                <form>					
+						    <b>Set Grade Level:</b><br><br>
 							<label for="a_left">A:</label>
     						<input name="a_left" id="a_left" type="range" min="0" max="100" value="90" data-highlight="true">					    
     											    
@@ -221,8 +218,8 @@
 						    
 						    <label for="f_right">F:</label>
     						<input name="f_right" id="f_right" type="range" min="0" max="100" value="59" data-highlight="true">					    
-					</fieldset>
-					<input name="save_category" id="save_category"  type="button" value="Save">
+					
+							<input name="save_category" id="save_category"  type="button" value="Save">
 					
 				</form>
 				
@@ -270,7 +267,7 @@
                     <a href="#" id="computeGrade" data-role="button" data-icon="check">Compute Grade</a>
                     </p>
                     <p class="final grade">
-                    <label>Final Grade</label>
+                    <label><b>Final Grade: </b></label>
                     <span id="finalgrade">TBD</span>
                     </p>
                 </form>	  

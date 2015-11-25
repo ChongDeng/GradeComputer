@@ -17,22 +17,38 @@
 	 var project_maxpoint = parseInt(localStorage.getItem('project_maxpoint'));
 	 var presentation_maxpoint = parseInt(localStorage.getItem('presentation_maxpoint'));
 	 var midterm_maxpoint = parseInt(localStorage.getItem('midterm_maxpoint'));	
-	 var final_maxpoint = parseInt(localStorage.getItem('final_maxpoint'));	 
+	 var final_maxpoint = parseInt(localStorage.getItem('final_maxpoint'));
 	 
+	 var grade_A = parseInt(localStorage.getItem('a_left'));
+	 var grade_B = parseInt(localStorage.getItem('b_left'));
+	 var grade_C = parseInt(localStorage.getItem('c_left'));
+	 var grade_D = parseInt(localStorage.getItem('d_left'));
+	 
+	 var homework_factor = parseInt(localStorage.getItem('homework_factor'));
+	 var lab_factor = parseInt(localStorage.getItem('lab_factor'));
+	 var project_factor = parseInt(localStorage.getItem('project_factor'));
+	 var presentation_factor = parseInt(localStorage.getItem('presentation_factor'));
+	 var midterm_factor = parseInt(localStorage.getItem('midterm_factor'));
+	 var final_factor = parseInt(localStorage.getItem('final_factor'));
+	 
+	 
+	 if(isNaN(homework_maxpoint) || isNaN(lab_maxpoint) || isNaN(project_maxpoint) || isNaN(presentation_maxpoint)
+	    || isNaN(midterm_maxpoint) || isNaN(final_maxpoint)) 
+		 alert("Pleas set the maxpoints first");
+	 
+	 else if(isNaN(homework_factor) || isNaN(lab_factor) || isNaN(project_factor) || isNaN(presentation_factor)
+			 || isNaN(midterm_factor) || isNaN(final_factor)) 
+				 alert("Pleas set the factors first");
+	 
+	 else if(isNaN(grade_A) || isNaN(grade_B) || isNaN(grade_C) || isNaN(grade_D))	   
+		 alert("Pleas set the grade level first");
 	 
 	 //alert("homework_grades: " + homework_grades + " homework_maxpoint: " + homework_maxpoint);
-	 if(homework_grades == "" || lab_grades == "" ||  project_grades == "" ||  presentation_grades == "" ||  midterm_grades == "" || final_grades == "")
+	 else if(homework_grades == "" || lab_grades == "" ||  project_grades == "" ||  presentation_grades == "" ||  midterm_grades == "" || final_grades == "")
 		alert("Please input every grade!");
 	 else if(homework_grades > homework_maxpoint || lab_grades > lab_maxpoint ||  project_grades > project_maxpoint ||  presentation_grades > presentation_maxpoint ||  midterm_grades > midterm_maxpoint || final_grades > final_maxpoint)
 		alert("The grade you input should not larger than the full score!");
-	 else{
-		 
-		 var homework_factor = localStorage.getItem('homework_factor');
-		 var lab_factor = localStorage.getItem('lab_factor');
-		 var project_factor = localStorage.getItem('project_factor');
-		 var presentation_factor = localStorage.getItem('presentation_factor');
-		 var midterm_factor = localStorage.getItem('midterm_factor');
-		 var final_factor = localStorage.getItem('final_factor');
+	 else{		 
 		 
 		 var grade_denominator = homework_maxpoint * homework_factor + lab_maxpoint * lab_factor +
 		 						 project_maxpoint * project_factor + presentation_maxpoint * presentation_factor +
@@ -42,13 +58,7 @@
 		 						project_grades * project_factor + presentation_grades * presentation_factor +
 		 						midterm_grades * midterm_factor + final_grades * final_factor;
 		 
-		 var percentage = grade_numerator * 100 / grade_denominator;
-		 
-		 
-		 var grade_A = localStorage.getItem('a_left');
-		 var grade_B = localStorage.getItem('b_left');
-		 var grade_C = localStorage.getItem('c_left');
-		 var grade_D = localStorage.getItem('d_left');
+		 var percentage = grade_numerator * 100 / grade_denominator;	 
 		 
 		 if(percentage >= grade_A)	 	 $('#finalgrade').text("A");
 		 else if(percentage >= grade_B)	 $('#finalgrade').text("B");
@@ -57,7 +67,7 @@
 		 else           	             $('#finalgrade').text("F");
 		 
 		 
-		 alert("percentage: " + percentage);
+		 //alert("percentage: " + percentage);
 		 //alert("grade_denominator: " + grade_denominator + " grade_numerator: " + grade_numerator); 
 	 }
  };
@@ -150,9 +160,9 @@ var saveFactors = function()
 	        //alert("#" + a_left + "  " + b_left + "#" + b_right + "  " + c_left + "#" + c_right + "  " + d_left + "#" + d_right + "  " + f_right + "#");
 	        
 	        if(a_left == 0 || b_left == 0 || b_right == 0 || c_left == 0 || c_right == 0 || d_left == 0 || d_right == 0 || f_right == 0)
-	        	alert("Wrong inputs, every input should not be 0");
+	        	alert("Wrong inputs! Every input should not be 0");
 	        else if(b_right + 1 != a_left || c_right + 1 != b_left || d_right + 1 != c_left || f_right + 1 != d_left) 
-	        	alert("Please follow \"higher category.lower == lower category. higher + 1\"");
+	        	alert("Wrong! Please follow \"higher category.lower == lower category. higher + 1\"");
 	        else{
 	        	localStorage.setItem('a_left', a_left);
 	            localStorage.setItem('b_left', b_left);
@@ -162,8 +172,9 @@ var saveFactors = function()
 	            localStorage.setItem('d_left', d_left);
 	            localStorage.setItem('d_right', d_right);             
 	            localStorage.setItem('f_right', f_right);
+	            alert("success!");
 	        } 
-	        alert("success!");
+	        
 	    } catch (ex)
 	    {
 	        alert('Points must be a decimal value');
@@ -238,10 +249,49 @@ var saveFactors = function()
 	   
 	 };
 	 
+	 var retrieve_grades_setting = function(){
+		
+		 var homework_maxpoint = parseInt(localStorage.getItem('homework_maxpoint'));     
+		 var lab_maxpoint = parseInt(localStorage.getItem('lab_maxpoint'));
+		 var project_maxpoint = parseInt(localStorage.getItem('project_maxpoint'));
+		 var presentation_maxpoint = parseInt(localStorage.getItem('presentation_maxpoint'));
+		 var midterm_maxpoint = parseInt(localStorage.getItem('midterm_maxpoint'));	
+		 var final_maxpoint = parseInt(localStorage.getItem('final_maxpoint'));
+		 
+		 var grade_A = parseInt(localStorage.getItem('a_left'));
+		 var grade_B = parseInt(localStorage.getItem('b_left'));
+		 var grade_C = parseInt(localStorage.getItem('c_left'));
+		 var grade_D = parseInt(localStorage.getItem('d_left'));
+		 
+		 var homework_factor = parseInt(localStorage.getItem('homework_factor'));
+		 var lab_factor = parseInt(localStorage.getItem('lab_factor'));
+		 var project_factor = parseInt(localStorage.getItem('project_factor'));
+		 var presentation_factor = parseInt(localStorage.getItem('presentation_factor'));
+		 var midterm_factor = parseInt(localStorage.getItem('midterm_factor'));
+		 var final_factor = parseInt(localStorage.getItem('final_factor'));
+		
+		 //$('#homework_maxpoint').slider("values", "200");
+		 //$('#homework_maxpoint').slider( "values", localStorage.getItem('homework_maxpoint'));
+		 //$('#homework_maxpoint').slider(200);
+		 
+		 /*
+		  var gradeCutOffSetting = localStorage.getItem('gradeCutOff');
+                  
+                  if (gradeCutOffSetting)
+                  {
+                    gApoint = parseFloat(gradeCutOffSetting);
+                  }
+                  
+                  $('#gradeCutOff').val(gApoint);
+                  
+                  });
+          */
+	 }
 	 
  // Setup the event handlers
  $( document ).on( "ready", function(){
                   
+	 			  retrieve_grades_setting();
                   $('#settings_return').on('click', settings_return);
                   $('#resetSettings').on('click', resetSettings);
                   

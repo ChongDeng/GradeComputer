@@ -2,6 +2,7 @@
 
 function db_connect() {
    $result = new mysqli('localhost', 'grade_computer', 'password', 'grade_computer');
+   //$result = new mysqli('localhost', 'sevsevel_deng', 'deng21', 'sevsevel_GradeComputer');
    if (!$result) {
       return false;
    }
